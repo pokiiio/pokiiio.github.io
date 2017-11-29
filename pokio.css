@@ -1,0 +1,26 @@
+#wrap {
+    width:960px;
+    margin:0px auto;
+}
+#header{
+  width: 960px;
+  word-wrap:break-word;
+}
+#main{
+  width: 720px;
+  float: left;
+  word-wrap:break-word;
+}
+#side{
+  width: 240px;
+  float: right;
+  word-wrap:break-word;
+}
+p{
+    word-wrap:break-word;
+}
+#footer{
+  clear: both;
+  width: 960px;
+  word-wrap:break-word;
+}
