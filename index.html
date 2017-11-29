@@ -1,1 +1,92 @@
-pokio's home.
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="utf-8">
+    <title>pokiiio.github.io</title>
+    <meta name="description" content="pokio's github page">
+    <meta name="keywords" content="pokio,pokiiio,ポキオ">
+    <link rel="stylesheet" type="text/css" href="pokio.css">
+    <script type="text/javascript">
+        window.onload = function () {
+            var xmlHttpRequest = new XMLHttpRequest();
+            xmlHttpRequest.onreadystatechange = function () {
+                if (this.readyState != 4) {
+                    return;
+                }
+
+                if (this.status == 200) {
+                    var data = JSON.parse(xmlHttpRequest.responseText);
+                    for (var i = 0; i < data.length; i++) {
+                        var div_element = document.createElement("div");
+                        div_element.id = "repository";
+                        div_element.innerHTML = '<h3><a href="' + data[i].html_url + '">' + data[i].name + '</a></h3><p>' + data[i].description + '</p>';
+                        var parent_object = document.getElementById("repositories");
+                        parent_object.appendChild(div_element);
+                    }
+                } else {
+                    var div_element = document.createElement("div");
+                    div_element.innerHTML = '<p>not available...</p>';
+                    var parent_object = document.getElementById("repositories");
+                    parent_object.appendChild(div_element);
+                }
+            };
+            xmlHttpRequest.open('GET', 'https://api.github.com/users/pokiiio/repos?sort=updated');
+            xmlHttpRequest.send();
+        };
+    </script>
+</head>
+
+<body>
+    <div id="wrap">
+        <header id="header">
+            <div id="title">
+                <h1>pokiiio.github.io</h1>
+                <p>ポキオのページです。</p>
+            </div>
+        </header>
+
+        <main id="main">
+            <h2>Repositories</h2>
+            <div id="repositories"></div>
+        </main>
+
+        <div id="side">
+            <h2>Links</h2>
+
+            <h3>Githubページ</h3>
+            <p>
+                <a href="https://github.com/pokiiio">https://github.com/pokiiio</a>
+            </p>
+
+            <h3>ブログ</h3>
+            <p>
+                <a href="http://relativelayout.hatenablog.com/">Androidのメモとか
+                    <br>http://relativelayout.hatenablog.com/</a>
+            </p>
+
+            <h3>Twitter</h3>
+            <p>
+                <a href="https://twitter.com/pokiiio">@pokiiio</a>
+            </p>
+
+            <h3>Speaker Deck</h3>
+            <p>
+                <a href="https://speakerdeck.com/pokiiio">https://speakerdeck.com/pokiiio</a>
+            </p>
+
+            <h3>Suzuri</h3>
+            <p>
+                <a href="https://suzuri.jp/pokiiio">https://suzuri.jp/pokiiio</a>
+            </p>
+        </div>
+
+        <footer id="footer">
+            <p>
+                created by pokio with love.
+            </p>
+        </footer>
+    </div>
+</body>
+
+</html>
