@@ -7,6 +7,7 @@
     <meta name="description" content="pokio's github page">
     <meta name="keywords" content="pokio,pokiiio,ポキオ">
     <meta name="viewport" content="width=device-width,initial-scale=1">
+    <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="pokio.css">
     <script type="text/javascript">
         window.onload = function () {
@@ -21,7 +22,7 @@
                     for (var i = 0; i < data.length; i++) {
                         var div_element = document.createElement("div");
                         div_element.id = "repository";
-                        div_element.innerHTML = '<h3><a href="' + data[i].html_url + '">' + data[i].name + '</a></h3><p>' + data[i].description + '</p>';
+                        div_element.innerHTML = '<a href="' + data[i].html_url + '"><h3>' + data[i].name + '</h3><p>' + data[i].description + '</p></a>';
                         var parent_object = document.getElementById("repositories");
                         parent_object.appendChild(div_element);
                     }
@@ -55,31 +56,41 @@
         <div id="side">
             <h2>Links</h2>
 
-            <h3>Githubページ</h3>
-            <p>
-                <a href="https://github.com/pokiiio">https://github.com/pokiiio</a>
-            </p>
+            <div id="link">
+                <a href="https://github.com/pokiiio">
+                    <h3>Githubページ</h3>
+                    <p>https://github.com/pokiiio</p>
+                </a>
+            </div>
 
-            <h3>ブログ</h3>
-            <p>
-                <a href="http://relativelayout.hatenablog.com/">Androidのメモとか
-                    <br>http://relativelayout.hatenablog.com/</a>
-            </p>
+            <div id="link">
+                <a href="http://relativelayout.hatenablog.com/">
+                    <h3>ブログ</h3>
+                    <p>Androidのメモとか
+                        <br>http://relativelayout.hatenablog.com/</p>
+                </a>
+            </div>
 
-            <h3>Twitter</h3>
-            <p>
-                <a href="https://twitter.com/pokiiio">@pokiiio</a>
-            </p>
+            <div id="link">
+                <a href="https://twitter.com/pokiiio">
+                    <h3>Twitter</h3>
+                    <p>@pokiiio</p>
+                </a>
+            </div>
 
-            <h3>Speaker Deck</h3>
-            <p>
-                <a href="https://speakerdeck.com/pokiiio">https://speakerdeck.com/pokiiio</a>
-            </p>
+            <div id="link">
+                <a href="https://speakerdeck.com/pokiiio">
+                    <h3>Speaker Deck</h3>
+                    <p>https://speakerdeck.com/pokiiio</p>
+                </a>
+            </div>
 
-            <h3>Suzuri</h3>
-            <p>
-                <a href="https://suzuri.jp/pokiiio">https://suzuri.jp/pokiiio</a>
-            </p>
+            <div id="link">
+                <a href="https://suzuri.jp/pokiiio">
+                    <h3>Suzuri</h3>
+                    <p>https://suzuri.jp/pokiiio</p>
+                </a>
+            </div>
         </div>
 
         <footer id="footer">
