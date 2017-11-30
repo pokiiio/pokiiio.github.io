@@ -1,26 +1,42 @@
 #wrap {
-    width:960px;
+    width:auto;
     margin:0px auto;
 }
 #header{
-  width: 960px;
+  text-align: center;
   word-wrap:break-word;
 }
 #main{
-  width: 720px;
-  float: left;
   word-wrap:break-word;
 }
 #side{
-  width: 240px;
-  float: right;
   word-wrap:break-word;
 }
 p{
-    word-wrap:break-word;
+  word-wrap:break-word;
 }
 #footer{
   clear: both;
-  width: 960px;
+  text-align: center;
   word-wrap:break-word;
+}
+@media screen and ( min-width:960px )
+{
+  #wrap {
+      width:960px;
+      margin:0px auto;
+  }
+  #header{
+    text-align: left;
+  }
+  #main{
+    width: 720px;
+    float: left;
+    word-wrap:break-word;
+  }
+  #side{
+    width: 240px;
+    float: right;
+    word-wrap:break-word;
+  }
 }
