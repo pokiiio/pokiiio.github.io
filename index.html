@@ -36,7 +36,13 @@
                     }
                 } else {
                     var div_element = document.createElement("div");
-                    div_element.innerHTML = '<p>not available...</p>';
+                    var data = JSON.parse(xmlHttpRequest.responseText);
+                    
+                    if(data.message){
+                        div_element.innerHTML = '<p>' + data.message + '</p>';
+                    }else{
+                        div_element.innerHTML = '<p>not available...</p>';
+                    }
                     var parent_object = document.getElementById("repositories");
                     parent_object.appendChild(div_element);
                 }
