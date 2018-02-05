@@ -104,8 +104,28 @@
 </head>
 
 <body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary d-block d-sm-none">
+        <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbarForm" aria-controls="navbarForm"
+            aria-expanded="false" aria-label="ナビゲーションの切替">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <a class="navbar-brand" href="https://pokiiio.github.io/">pokiiio.github.io</a>
+
+        <div class="collapse navbar-collapse" id="navbarForm">
+            <ul class="navbar-nav mr-auto mt-2 mt-md-0">
+                <li class="nav-item active">
+                    <a class="nav-link" href="#repos">repositories</a>
+                </li>
+                <li class="nav-item active">
+                    <a class="nav-link" href="#links">links</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
     <div class="container">
-        <div class="jumbotron">
+        <div class="jumbotron d-none d-sm-block">
             <h1 class="display-3">pokiiio.github.io</h1>
             <p class="lead">In Keikyu We Trust</p>
             <hr class="my-2">
@@ -116,14 +136,13 @@
         </div>
 
         <div class="row">
-            <div class="col-sm-9">
+            <div id="repos" class="col-sm-9">
                 <h1 class="display-4">repositories</h1>
                 <div id="repositories"></div>
             </div>
 
             <div class="col-sm-3">
-                <h1 class="display-4">links</h1>
-
+                <h1 id="links" class="display-4">links</h1>
                 <div class="card mb-3">
                     <h3 class="card-header">GitHub</h3>
                     <div class="card-body">
