@@ -21,84 +21,47 @@
     <meta property="og:image" content="https://pokiiio.github.io/pokio.jpg">
     <meta property="og:site_name" content="pokiiio.github.io">
     <meta property="og:locale" content="ja_JP">
+    <script type="text/javascript" src="./hatena-blog-parser.js"></script>
     <script type="text/javascript">
         window.onload = function () {
-            let xmlHttpRequest = new XMLHttpRequest();
-            xmlHttpRequest.onreadystatechange = function () {
-                if (this.readyState != 4) {
-                    return;
-                }
 
-                let parent_object = document.getElementById("repositories");
+            createCards('https://relativelayout.hatenablog.com/rss', 'relativelayout');
+            createCards('https://upgti.hatenablog.com/rss', 'upgti');
+            createCards('https://pokio-ringyo.hatenablog.com/rss', 'ringyo');
 
-                if (this.status == 200) {
-                    let data = JSON.parse(xmlHttpRequest.responseText);
-
-                    for (let i = 0; i < data.length; i++) {
+            function createCards(blogUrl, parentId) {
+                const parent_object = document.getElementById(parentId);
+                parse(blogUrl, function (data) {
+                    data.slice(0, 3).forEach(element => {
                         let div_card = document.createElement("div");
                         div_card.className = "card mb-3";
+                        div_card.setAttribute("onclick", "window.open('" + element.postLink + "', '_blank');");
+
+                        let img_card_top = document.createElement("img");
+                        img_card_top.className = "card-img-top";
+                        img_card_top.src = element.postEnclosureUrl;
+                        img_card_top.style.cssText = "height: 15rem; object-fit: cover;";
 
                         let div_card_body = document.createElement("div");
                         div_card_body.className = "card-body";
 
                         let div_card_title = document.createElement("h3");
-                        div_card_title.className = "card-title";
-                        div_card_title.innerText = data[i].name;
+                        div_card_title.className = "card-title text-truncate";
+                        div_card_title.innerText = element.postTitle;
 
                         let div_card_description = document.createElement("p");
-                        div_card_description.className = "card-text";
-                        div_card_description.innerText = data[i].description;
-
-                        let link = document.createElement("a");
-                        link.className = "btn btn-primary";
-                        link.setAttribute("href", data[i].html_url);
-                        link.innerText = data[i].html_url;
+                        div_card_description.className = "card-text lead text-muted text-truncate";
+                        div_card_description.innerText = element.blogTitle + ' : ' + element.postLink;
 
                         div_card_body.appendChild(div_card_title);
                         div_card_body.appendChild(div_card_description);
-                        div_card_body.appendChild(link);
+                        div_card.appendChild(img_card_top);
                         div_card.appendChild(div_card_body);
                         parent_object.appendChild(div_card);
-                    }
-                } else {
-                    let data = JSON.parse(xmlHttpRequest.responseText);
+                    });
+                }, null);
 
-                    // let link = document.createElement("a");
-                    // link.setAttribute("href", "https://github.com/pokiiio");
-
-                    let div_card = document.createElement("div");
-                    div_card.className = "card mb-3";
-
-                    let div_card_body = document.createElement("div");
-                    div_card_body.className = "card-body";
-
-                    let div_card_title = document.createElement("h3");
-                    div_card_title.className = "card-title";
-                    div_card_title.innerText = "Error";
-
-                    let div_card_description = document.createElement("p");
-                    div_card_description.className = "card-text";
-
-                    if (data.message) {
-                        div_card_description.innerText = data.message;
-                    } else {
-                        div_card_description.innerText = "not available...";
-                    }
-
-                    let link = document.createElement("a");
-                    link.className = "btn btn-danger";
-                    link.setAttribute("href", "https://github.com/pokiiio");
-                    link.innerText = "Go to GitHub page";
-
-                    div_card_body.appendChild(div_card_title);
-                    div_card_body.appendChild(div_card_description);
-                    div_card_body.appendChild(link);
-                    div_card.appendChild(div_card_body);
-                    parent_object.appendChild(div_card);
-                }
-            };
-            xmlHttpRequest.open("GET", "https://api.github.com/users/pokiiio/repos?sort=updated");
-            xmlHttpRequest.send();
+            }
         };
     </script>
 </head>
@@ -115,10 +78,10 @@
         <div class="collapse navbar-collapse" id="navbarForm">
             <ul class="navbar-nav mr-auto mt-2 mt-md-0">
                 <li class="nav-item active">
-                    <a class="nav-link" href="#links">links</a>
+                    <a class="nav-link" href="#posts">recent posts</a>
                 </li>
                 <li class="nav-item active">
-                    <a class="nav-link" href="#repos">repositories</a>
+                    <a class="nav-link" href="#links">links</a>
                 </li>
             </ul>
         </div>
@@ -129,13 +92,17 @@
             <h1 class="display-3">pokiiio.github.io</h1>
             <p class="lead">In Keikyu We Trust</p>
             <hr class="my-2">
-            <p>A Full-STUCK Holy-Shit IoT Engineer</p>
-            <p class="lead">
-                <a class="btn btn-primary btn-lg" href="https://github.com/pokiiio" role="button">Go to GitHub page</a>
-            </p>
+            <p class="lead">A Full-STUCK Holy-Shit IoT Engineer / ポキオのページです</p>
         </div>
 
         <div class="row">
+            <div class="col-sm-8">
+                <h1　id="posts" class="display-4  mb-3">recents posts</h1>
+                <div id="relativelayout"></div>
+                <div id="upgti"></div>
+                <div id="ringyo"></div>
+            </div>
+
             <div class="col-sm-4">
                 <h1 id="links" class="display-4">links</h1>
                 <div class="card mb-3">
@@ -148,7 +115,11 @@
                 <div class="card mb-3">
                     <h3 class="card-header">Blog</h3>
                     <div class="card-body">
-                        <a class="btn btn-primary" href="http://relativelayout.hatenablog.com">Androidのメモとか</a>
+                        <a class="btn btn-primary mb-3" href="http://relativelayout.hatenablog.com">Androidのメモとか</a>
+                        <br>
+                        <a class="btn btn-primary mb-3" href="https://upgti.hatenablog.com">ポキオGTI</a>
+                        <br>
+                        <a class="btn btn-primary" href="https://pokio-ringyo.hatenablog.com">ポキオ輪業商会</a>
                     </div>
                 </div>
 
@@ -180,11 +151,6 @@
                     </div>
                 </div>
             </div>
-
-            <div id="repos" class="col-sm-8">
-                <h1 class="display-4">repositories</h1>
-                <div id="repositories"></div>
-            </div>
         </div>
 
 
@@ -193,11 +159,11 @@
 
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
         crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js" integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut"
         crossorigin="anonymous"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js" integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k"
         crossorigin="anonymous"></script>
 </body>
 
