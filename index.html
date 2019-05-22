@@ -35,7 +35,8 @@
                     data.slice(0, 3).forEach(element => {
                         let div_card = document.createElement("div");
                         div_card.className = "card mb-3";
-                        div_card.setAttribute("onclick", "window.open('" + element.postLink + "', '_blank');");
+                        div_card.setAttribute("onclick", "window.open('" + element.postLink +
+                            "', '_blank');");
 
                         let img_card_top = document.createElement("img");
                         img_card_top.className = "card-img-top";
@@ -51,7 +52,8 @@
 
                         let div_card_description = document.createElement("p");
                         div_card_description.className = "card-text lead text-muted text-truncate";
-                        div_card_description.innerText = element.blogTitle + ' : ' + element.postLink;
+                        div_card_description.innerText = element.blogTitle + ' : ' + element
+                            .postLink;
 
                         div_card_body.appendChild(div_card_title);
                         div_card_body.appendChild(div_card_description);
@@ -104,6 +106,20 @@
             </div>
 
             <div class="col-sm-4">
+                <h1 id="links" class="display-4">about</h1>
+                <div class="card mb-3">
+                    <h3 class="card-header">ポキオ</h3>
+                    <div class="card-body">
+                        <ul>
+                            <li>2児の父</li>
+                            <li>R&D園児にゃー</li>
+                            <li>京急が大好き</li>
+                            <li>お肉とビールは裏切らない</li>
+                            <li>勉強会とかでの活動やSNSの投稿は、すべて所属する会社とか組織とは無関係であり、個人としてのアレです。わかりますよね！</li>
+                        </ul>
+                    </div>
+                </div>
+
                 <h1 id="links" class="display-4">links</h1>
                 <div class="card mb-3">
                     <h3 class="card-header">GitHub</h3>
@@ -160,14 +176,14 @@
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
-        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
-        crossorigin="anonymous"></script>
+        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous">
+    </script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js"
-        integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut"
-        crossorigin="anonymous"></script>
+        integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut" crossorigin="anonymous">
+    </script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js"
-        integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k"
-        crossorigin="anonymous"></script>
+        integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k" crossorigin="anonymous">
+    </script>
 </body>
 
 </html>
