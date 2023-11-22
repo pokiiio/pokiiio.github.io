@@ -25,45 +25,63 @@
     <script type="text/javascript">
         window.onload = function () {
 
-            createCards('https://relativelayout.hatenablog.com/rss', 'relativelayout');
-            createCards('https://upgti.hatenablog.com/rss', 'upgti');
-            createCards('https://pokio-ringyo.hatenablog.com/rss', 'ringyo');
+            createCards(['https://relativelayout.hatenablog.com/rss', 'https://upgti.hatenablog.com/rss', 'https://pokio-ringyo.hatenablog.com/rss']);
 
-            function createCards(blogUrl, parentId) {
-                const parent_object = document.getElementById(parentId);
-                parse(blogUrl, function (data) {
-                    data.slice(0, 3).forEach(element => {
-                        let div_card = document.createElement("div");
-                        div_card.className = "card mb-3";
-                        div_card.setAttribute("onclick", "window.open('" + element.postLink +
-                            "', '_blank');");
+            function createCards(urls) {
+                const posts = [];
+                urls.forEach(url => {
+                    parse(url, function (data) {
+                        data.slice(0, 3).forEach(element => {
+                            posts.push(element);
+                            if (posts.length >= 9) {
+                                posts.sort((a, b) => {
+                                    if (a.date < b.date) {
+                                        return 1;
+                                    }
+                                    if (a.date > b.date) {
+                                        return -1;
+                                    }
+                                    return 0;
+                                });
+                                showCards(posts);
+                            }
+                        });
+                    }, null);
+                });
+            }
 
-                        let img_card_top = document.createElement("img");
-                        img_card_top.className = "card-img-top";
-                        img_card_top.loading = "lazy";
-                        img_card_top.src = element.postEnclosureUrl;
-                        img_card_top.style.cssText = "height: 12rem; object-fit: cover;";
+            function showCards(posts) {
+                const parent_object = document.getElementById('recents');
+                posts.forEach(post => {
+                    let div_card = document.createElement("div");
+                    div_card.className = "card mb-3";
+                    div_card.setAttribute("onclick", "window.open('" + post.postLink +
+                        "', '_blank');");
 
-                        let div_card_body = document.createElement("div");
-                        div_card_body.className = "card-body";
+                    let img_card_top = document.createElement("img");
+                    img_card_top.className = "card-img-top";
+                    img_card_top.loading = "lazy";
+                    img_card_top.src = post.postEnclosureUrl;
+                    img_card_top.style.cssText = "height: 12rem; object-fit: cover;";
 
-                        let div_card_title = document.createElement("h3");
-                        div_card_title.className = "card-title text-truncate";
-                        div_card_title.innerText = element.postTitle;
+                    let div_card_body = document.createElement("div");
+                    div_card_body.className = "card-body";
 
-                        let div_card_description = document.createElement("p");
-                        div_card_description.className = "card-text lead text-muted text-truncate";
-                        div_card_description.innerText = element.blogTitle + ' : ' + element
-                            .postLink;
+                    let div_card_title = document.createElement("h3");
+                    div_card_title.className = "card-title text-truncate";
+                    div_card_title.innerText = post.postTitle;
 
-                        div_card_body.appendChild(div_card_title);
-                        div_card_body.appendChild(div_card_description);
-                        div_card.appendChild(img_card_top);
-                        div_card.appendChild(div_card_body);
-                        parent_object.appendChild(div_card);
-                    });
-                }, null);
+                    let div_card_description = document.createElement("p");
+                    div_card_description.className = "card-text lead text-muted text-truncate";
+                    div_card_description.innerText = post.blogTitle + ' : ' + post
+                        .postLink;
 
+                    div_card_body.appendChild(div_card_title);
+                    div_card_body.appendChild(div_card_description);
+                    div_card.appendChild(img_card_top);
+                    div_card.appendChild(div_card_body);
+                    parent_object.appendChild(div_card);
+                });
             }
         };
     </script>
@@ -101,9 +119,7 @@
         <div class="row">
             <div class="col-sm-8">
                 <h1　id="posts" class="display-4  mb-3">recents posts</h1>
-                <div id="relativelayout"></div>
-                <div id="upgti"></div>
-                <div id="ringyo"></div>
+                <div id="recents"></div>
             </div>
 
             <div class="col-sm-4">
@@ -115,7 +131,8 @@
                             <li>software engineer</li>
                             <li>🍺 🍖 🚲 🚗</li>
                             <li>勉強会などでの活動やSNSの投稿は、すべて所属する会社とか組織とは無関係であり、個人としての発言です。</li>
-                            <li>All of my activities in study groups and social networking posts are unrelated to the company or organization I belong to; it's just my personal opinion.</li>
+                            <li>All of my activities in study groups and social networking posts are unrelated to the
+                                company or organization I belong to; it's just my personal opinion.</li>
                         </ul>
                     </div>
                 </div>
@@ -131,7 +148,8 @@
                 <div class="card mb-3">
                     <h3 class="card-header">ポキオ＠酒クズ写真家</h3>
                     <div class="card-body">
-                        <a class="btn btn-primary" href="https://creatorscloud.sony.net/discover/mystudio/gp_4pQkmzxYkYfqhiLyzBDUub">ポキオ＠酒クズ写真家</a>
+                        <a class="btn btn-primary"
+                            href="https://creatorscloud.sony.net/discover/mystudio/gp_4pQkmzxYkYfqhiLyzBDUub">ポキオ＠酒クズ写真家</a>
                     </div>
                 </div>
 
@@ -172,7 +190,8 @@
                 <div class="card mb-3">
                     <h3 class="card-header">Bluesky</h3>
                     <div class="card-body">
-                        <a class="btn btn-primary" href="https://bsky.app/profile/pokiiio.bsky.social">@pokiiio.bsky.social</a>
+                        <a class="btn btn-primary"
+                            href="https://bsky.app/profile/pokiiio.bsky.social">@pokiiio.bsky.social</a>
                     </div>
                 </div>
 
