@@ -28,6 +28,21 @@ function parse(rssUrl, onSuccess, onFailure) {
                 post.date = new Date(date);
                 data.push(post);
             }
+            else if (element.includes('<note:')) {
+                const postTitle = element.split('<title>')[1].split('</title>')[0];
+                const postLink = element.split('<link>')[1].split('</link>')[0];
+                const postEnclosureUrl = element.split('<media:thumbnail>')[1].split('<')[0];
+                const date = element.split('<pubDate>')[1].split('</pubDate>')[0];
+
+                let post = {};
+                post.blogTitle = blogTitle;
+                post.blogDescription = blogDescription;
+                post.postTitle = postTitle;
+                post.postLink = postLink;
+                post.postEnclosureUrl = postEnclosureUrl;
+                post.date = new Date(date);
+                data.push(post);
+            }
         });
 
         onSuccess(data);

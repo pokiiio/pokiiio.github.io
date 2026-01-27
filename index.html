@@ -25,7 +25,7 @@
     <script type="text/javascript">
         window.onload = function () {
 
-            createCards(['https://relativelayout.hatenablog.com/rss', 'https://upgti.hatenablog.com/rss', 'https://pokio-ringyo.hatenablog.com/rss']);
+            createCards(['https://script.google.com/macros/s/AKfycbxCgmRuGiXk9BT5bbBjBh1DpKS_UoHsn41V3Eq1Aq0PERagjdqZsNXVUFaa1LGdOf254Q/exec', 'https://relativelayout.hatenablog.com/rss', 'https://upgti.hatenablog.com/rss', 'https://pokio-ringyo.hatenablog.com/rss']);
 
             function createCards(urls) {
                 const posts = [];
@@ -51,7 +51,16 @@
             }
 
             function showCards(posts) {
+                console.log('Displaying posts:', posts);
+
+
                 const parent_object = document.getElementById('recents');
+
+                if (parent_object) {
+                    while (parent_object.firstChild) {
+                        parent_object.removeChild(parent_object.firstChild);
+                    }
+                }
                 posts.forEach(post => {
                     let div_card = document.createElement("div");
                     div_card.className = "card mb-3";
@@ -149,26 +158,29 @@
                     <h3 class="card-header">ポキオ＠酒クズ写真家</h3>
                     <div class="card-body">
                         <a class="btn btn-primary"
-                            href="https://creatorscloud.sony.net/discover/mystudio/gp_4pQkmzxYkYfqhiLyzBDUub" target="_system">ポキオ＠酒クズ写真家</a>
+                            href="https://creatorscloud.sony.net/discover/mystudio/gp_4pQkmzxYkYfqhiLyzBDUub"
+                            target="_system">ポキオ＠酒クズ写真家</a>
                     </div>
                 </div>
 
                 <div class="card mb-3">
                     <h3 class="card-header">Blog</h3>
                     <div class="card-body">
-                        <a class="btn btn-primary mb-3" href="http://relativelayout.hatenablog.com" target="_system">Androidのメモとか</a>
+                        <a class="btn btn-primary mb-3" href="http://relativelayout.hatenablog.com"
+                            target="_system">Androidのメモとか</a>
                         <br>
                         <a class="btn btn-primary mb-3" href="https://upgti.hatenablog.com" target="_system">ポキオGTI</a>
                         <br>
-                        <a class="btn btn-primary" href="https://pokio-ringyo.hatenablog.com" target="_system">ポキオ輪業商会</a>
+                        <a class="btn btn-primary" href="https://pokio-ringyo.hatenablog.com"
+                            target="_system">ポキオ輪業商会</a>
                     </div>
                 </div>
 
                 <div class="card mb-3">
                     <h3 class="card-header">note</h3>
                     <div class="card-body">
-                        <a class="btn btn-primary"
-                            href="https://note.com/pokiiio" target="_system">ポキオ@走るソフトウェアエンジニア</a>
+                        <a class="btn btn-primary" href="https://note.com/pokiiio"
+                            target="_system">ポキオ@走るソフトウェアエンジニア</a>
                     </div>
                 </div>
 
@@ -182,22 +194,24 @@
                 <div class="card mb-3">
                     <h3 class="card-header">Instagram</h3>
                     <div class="card-body">
-                        <a class="btn btn-primary" href="https://www.instagram.com/pokiiiiio" target="_system">@pokiiiiio</a>
+                        <a class="btn btn-primary" href="https://www.instagram.com/pokiiiiio"
+                            target="_system">@pokiiiiio</a>
                     </div>
                 </div>
 
                 <div class="card mb-3">
                     <h3 class="card-header">Threads</h3>
                     <div class="card-body">
-                        <a class="btn btn-primary" href="https://www.threads.net/@pokiiiiio" target="_system">@pokiiiiio</a>
+                        <a class="btn btn-primary" href="https://www.threads.net/@pokiiiiio"
+                            target="_system">@pokiiiiio</a>
                     </div>
                 </div>
 
                 <div class="card mb-3">
                     <h3 class="card-header">Bluesky</h3>
                     <div class="card-body">
-                        <a class="btn btn-primary"
-                            href="https://bsky.app/profile/pokiiio.bsky.social" target="_system">@pokiiio.bsky.social</a>
+                        <a class="btn btn-primary" href="https://bsky.app/profile/pokiiio.bsky.social"
+                            target="_system">@pokiiio.bsky.social</a>
                     </div>
                 </div>
 
@@ -219,7 +233,8 @@
                     <h3 class="card-header">YouTube</h3>
                     <div class="card-body">
                         <a class="btn btn-primary"
-                            href="https://www.youtube.com/playlist?list=PLtXzEeISYiWIquZdge4ljgO_gqdYi1VtI&fbclid=IwAR04daaoJ5aLwVOL0iSV_5kbGnPNx7CNk5eiW1MWm82gjB3fVZZkqMmwZ0s" target="_system">ポキオ・カープール</a>
+                            href="https://www.youtube.com/playlist?list=PLtXzEeISYiWIquZdge4ljgO_gqdYi1VtI&fbclid=IwAR04daaoJ5aLwVOL0iSV_5kbGnPNx7CNk5eiW1MWm82gjB3fVZZkqMmwZ0s"
+                            target="_system">ポキオ・カープール</a>
                     </div>
                 </div>
             </div>
